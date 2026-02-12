@@ -1,7 +1,26 @@
 import React from 'react';
 import './about.css';
 
+const cannedQuotes = [
+  {
+    quote: 'talk is cheap.',
+    author: 'test',
+  },
+  {
+    quote: 'test2',
+    author: 'test2',
+  },
+];
+
+
 export function About() {
+  const [currentQuote, setCurrentQuote] = React.useState(cannedQuotes[0])
+
+  React.useEffect(() => {
+    const newQuote = cannedQuotes[Math.floor(Math.random() * cannedQuotes.length)];
+    setCurrentQuote(newQuote)
+  })
+
   return (
     <main className="container-fluid bg-secondary text-center">
       <div>
@@ -18,7 +37,7 @@ export function About() {
         </p>
 
         <div id="quote" className="quote-box bg-light text-dark">
-          <p className="quote">Words are cheap. Show me the code.</p>
+          <p className="quote">{currentQuote.quote}</p>
           <p className="author">Linus Torvalds</p>
         </div>
       </div>
